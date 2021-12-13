@@ -1,5 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
+import static com.codepath.apps.restclienttemplate.TimeFormatter.getTimeStamp;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,7 @@ List<Tweet> tweets;
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Tweet tweet = tweets.get(position);
+        holder.tvTime.setText(getTimeStamp(tweet.createdAt));
 
         holder.bind(tweet);
     }
@@ -67,12 +70,14 @@ List<Tweet> tweets;
         ImageView ivProfileImage;
         TextView tvBody;
         TextView tvScreenName;
+        TextView tvTime;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            tvTime = itemView.findViewById(R.id.tvTime);
         }
 
         public void bind(Tweet tweet) {
